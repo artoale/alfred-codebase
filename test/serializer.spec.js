@@ -25,12 +25,14 @@ describe('serializer', function () {
             var items = [{
                 project: {
                     project_id: 1,
-                    name: '1'
+                    name: '1',
+                    permalink: '1'
                 }
             }, {
                 project: {
                     project_id: 2,
-                    name: '2'
+                    name: '2',
+                    permalink: '2'
                 }
             }];
 
@@ -42,7 +44,8 @@ describe('serializer', function () {
             var items = [{
                 project: {
                     project_id: 1,
-                    name: '1'
+                    name: '1',
+                    permalink: '1'
                 }
             }];
 
@@ -52,7 +55,7 @@ describe('serializer', function () {
             expect(result.children[0].attributes.autocomplete).not.to.be.undefined();
 
             expect(result.children[0].attributes.uid.value).to.equal('1');
-            expect(result.children[0].attributes.arg.value).to.equal(JSON.stringify(items[0]).replace(/"/g, '&quot;'));
+            expect(result.children[0].attributes.arg.value).to.equal('1');
             expect(result.children[0].attributes.autocomplete.value).to.equal('1');
         });
     });
