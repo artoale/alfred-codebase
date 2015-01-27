@@ -1,0 +1,41 @@
+{
+  "name": "alfred-codebase",
+  "version": "0.0.0",
+  "description": "Alfred workflow for codebase",
+  "main": "index.js",
+  "directories": {
+    "test": "test"
+  },
+  "dependencies": {
+    "q-io": "^1.11.6",
+    "rest": "^1.3.0",
+    "xmlbuilder": "^2.4.6"
+  },
+  "devDependencies": {
+    "chai": "^1.10.0",
+    "grunt": "^0.4.5",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-mocha-test": "^0.12.7",
+    "mocha": "^2.1.0"
+  },
+  "scripts": {
+    "test": "grunt test-ci"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/artoale/alfred-codebase.git"
+  },
+  "keywords": [
+    "alfred",
+    "workflow",
+    "codebase",
+    "codebase",
+    "hq"
+  ],
+  "author": "Alessandro Artoni <artoale@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/artoale/alfred-codebase/issues"
+  },
+  "homepage": "https://github.com/artoale/alfred-codebase"
+}
