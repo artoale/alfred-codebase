@@ -15,6 +15,9 @@ if (process.argv[3] && process.argv[3] === 'ticket') {
 	var queryTokens = process.argv[2].split(' ');
 	var project = queryTokens[0];
 	var query = queryTokens[1] || '';
+	codebase.tickets(project, query).then(function (data) {
+		console.log(serializer.tickets(data, project).toString());
+	});
 } else {
 	codebase.projects(process.argv[2].toLowerCase()).then(function (data) {
 		console.log(serializer.projects(data).toString());
