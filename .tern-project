@@ -1,0 +1,10 @@
+{
+  "libs": [
+  ],
+  "loadEagerly": [
+    "index.js"
+  ],
+  "plugins": {
+    "node": {}
+  }
+}
