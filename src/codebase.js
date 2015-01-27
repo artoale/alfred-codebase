@@ -8,7 +8,7 @@ var defaultRequest = require('rest/interceptor/defaultRequest');
 var fs = require('q-io/fs');
 
 
-module.exports = function(auth) {
+module.exports = function(auth, config) {
 
 	var client = rest.wrap(basicAuth, {
         username: auth.user,
@@ -27,7 +27,7 @@ module.exports = function(auth) {
     });
 
     var projects = function(query) {
-        return fs.read('./project-list.json').catch(function(error) {
+        return fs.read(config.projectCache).catch(function(error) {
                 return client({
                     path: 'projects'
                 }).then(function(data) {
