@@ -12,7 +12,7 @@
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>B8FFA3AB-AD7D-4316-A84F-5958A671D4FF</string>
+				<string>3ABEA8AA-7DAC-4A9F-BE52-7318E560EC8A</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -33,13 +33,17 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>searcher</key>
-				<integer>1635215215</integer>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>tell application "Alfred 2" to search "cb:t {query}"</string>
+				<key>type</key>
+				<integer>6</integer>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.action.systemwebsearch</string>
+			<string>alfred.workflow.output.script</string>
 			<key>uid</key>
-			<string>B8FFA3AB-AD7D-4316-A84F-5958A671D4FF</string>
+			<string>3ABEA8AA-7DAC-4A9F-BE52-7318E560EC8A</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -51,16 +55,16 @@
 				<key>escaping</key>
 				<integer>36</integer>
 				<key>keyword</key>
-				<string>nd</string>
+				<string>cb:p</string>
 				<key>runningsubtext</key>
-				<string>Search Nodejs</string>
+				<string>Searching codebase...</string>
 				<key>script</key>
-				<string>/usr/local/bin/node index.js {query}
+				<string>/usr/local/bin/node index.js "{query}"
 </string>
 				<key>subtext</key>
-				<string>Search Nodejs</string>
+				<string>Search codebase for project</string>
 				<key>title</key>
-				<string>Search Nodejs</string>
+				<string>Search Codebase for project</string>
 				<key>type</key>
 				<integer>0</integer>
 				<key>withspace</key>
@@ -73,17 +77,52 @@
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>escaping</key>
+				<integer>127</integer>
+				<key>keyword</key>
+				<string>cb:t</string>
+				<key>runningsubtext</key>
+				<string>Search codebase project for tickets</string>
+				<key>script</key>
+				<string>/usr/local/bin/node index.js "{query}" "ticket"
+</string>
+				<key>subtext</key>
+				<string>Search codebase project {{query}} for tickets</string>
+				<key>title</key>
+				<string>Search codebase project {{query}} for tickets</string>
+				<key>type</key>
+				<integer>0</integer>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.scriptfilter</string>
+			<key>uid</key>
+			<string>3ED8484E-10D4-4488-8D76-9A5CAF9680F0</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>63F60794-BB56-4415-9372-BAF974C3A7E1</key>
+		<key>3ABEA8AA-7DAC-4A9F-BE52-7318E560EC8A</key>
 		<dict>
 			<key>ypos</key>
 			<real>60</real>
 		</dict>
-		<key>B8FFA3AB-AD7D-4316-A84F-5958A671D4FF</key>
+		<key>3ED8484E-10D4-4488-8D76-9A5CAF9680F0</key>
+		<dict>
+			<key>ypos</key>
+			<real>180</real>
+		</dict>
+		<key>63F60794-BB56-4415-9372-BAF974C3A7E1</key>
 		<dict>
 			<key>ypos</key>
 			<real>60</real>

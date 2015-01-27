@@ -11,6 +11,13 @@ var config = {
 var codebase = require('./src/codebase.js')(auth, config, fs);
 var serializer = require('./src/serializer.js')();
 
-codebase.projects(process.argv[2].toLowerCase()).then(function (data) {
-	console.log(serializer.projects(data).toString());
-});
+if (process.argv[3] && process.argv[3] === 'ticket') {
+	var queryTokens = process.argv[2].split(' ');
+	var project = queryTokens[0];
+	var query = queryTokens[1] || '';
+} else {
+	codebase.projects(process.argv[2].toLowerCase()).then(function (data) {
+		console.log(serializer.projects(data).toString());
+	});	
+}
+
