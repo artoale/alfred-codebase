@@ -7,6 +7,9 @@ var builder = require('xmlbuilder');
 module.exports = function() {
     var projects = function(items) {
         var root = builder.create('items');
+        if (!Array.isArray(items)) {
+            items = [];
+        }
         items.forEach(function(item) {
             var itemRoot = root.ele('item', {
                 'uid': item.project.project_id,
@@ -16,14 +19,10 @@ module.exports = function() {
 
             itemRoot.ele('title', {}, item.project.name);
             itemRoot.ele('subtitle', {}, item.project.group_id);
-            itemRoot.end({
-                pretty: true
-            });
+            itemRoot.end();
         });
 
-        root.end({
-            pretty: true
-        });
+        root.end();
 
         return root;
     };
