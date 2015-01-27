@@ -16,7 +16,11 @@
     "grunt": "^0.4.5",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-test": "^0.12.7",
-    "mocha": "^2.1.0"
+    "mocha": "^2.1.0",
+    "nock": "^0.58.0",
+    "q": "^1.1.2",
+    "sinon": "^1.12.2",
+    "sinon-chai": "^2.6.0"
   },
   "scripts": {
     "test": "grunt test-ci"

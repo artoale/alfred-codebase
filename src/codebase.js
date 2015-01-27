@@ -5,10 +5,10 @@ var basicAuth = require('rest/interceptor/basicAuth');
 var mime = require('rest/interceptor/mime');
 var pathPrefix = require('rest/interceptor/pathPrefix');
 var defaultRequest = require('rest/interceptor/defaultRequest');
-var fs = require('q-io/fs');
 
 
-module.exports = function(auth, config) {
+
+module.exports = function(auth, config, fs) {
 
 	var client = rest.wrap(basicAuth, {
         username: auth.user,
@@ -32,7 +32,7 @@ module.exports = function(auth, config) {
                     path: 'projects'
                 }).then(function(data) {
                     var toCache = JSON.stringify(data.entity);
-                    fs.write('./project-list.json', toCache);
+                    fs.write(config.projectCache, toCache);
                     return toCache;
                 });
             })
