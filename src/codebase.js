@@ -45,9 +45,20 @@ module.exports = function(auth, config, fs) {
 
     };
 
+    var tickets = function(project, query) {
+        return client({
+            path: project + '/tickets',
+            params: {
+                query: 'resolution:open ' + query
+            }
+        }).then(function (data) {
+            return data.entity;
+        });
+    };
 
     return {
         projects: projects,
+        tickets: tickets,
     };
 
 };
