@@ -39,7 +39,7 @@ module.exports = function() {
         items.forEach(function(item) {
             var project = item.project;
             var subtitle = project.group_id + ' (open tickets: ' + project.open_tickets + '/' + project.total_tickets + ')';
-            _addItem(root, project.permalink + ' >', project.permalink + ' >', project.name, subtitle, project.project_id);
+            _addItem(root, project.permalink + ' >', project.permalink, project.name, subtitle, project.project_id);
             
         });
 
@@ -54,7 +54,7 @@ module.exports = function() {
             items = [];
         }
         items.forEach(function(item) {
-            var title = item.ticket.ticket_id + '#: ' + item.ticket.summary;
+            var title = '#' + item.ticket.ticket_id + ': ' + item.ticket.summary;
             var subtitle = [item.ticket.ticket_type, item.ticket.status.name];
 
             if (item.ticket.milestone) {
