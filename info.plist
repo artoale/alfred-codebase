@@ -8,11 +8,22 @@
 	<string>Productivity</string>
 	<key>connections</key>
 	<dict>
+		<key>0B9671DA-78B2-4C92-A172-52DA3F9BFC65</key>
+		<array>
+			<dict>
+				<key>destinationuid</key>
+				<string>07A944EE-AC98-4DF7-834F-378847E2161C</string>
+				<key>modifiers</key>
+				<integer>0</integer>
+				<key>modifiersubtext</key>
+				<string></string>
+			</dict>
+		</array>
 		<key>63F60794-BB56-4415-9372-BAF974C3A7E1</key>
 		<array>
 			<dict>
 				<key>destinationuid</key>
-				<string>3ABEA8AA-7DAC-4A9F-BE52-7318E560EC8A</string>
+				<string>0B9671DA-78B2-4C92-A172-52DA3F9BFC65</string>
 				<key>modifiers</key>
 				<integer>0</integer>
 				<key>modifiersubtext</key>
@@ -33,29 +44,20 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>escaping</key>
-				<integer>4</integer>
-				<key>script</key>
-				<string>tell application "Alfred 2" to search "cb:t {query}"</string>
-				<key>type</key>
-				<integer>6</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.output.script</string>
-			<key>uid</key>
-			<string>3ABEA8AA-7DAC-4A9F-BE52-7318E560EC8A</string>
-			<key>version</key>
-			<integer>0</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
 				<key>argumenttype</key>
-				<integer>0</integer>
+				<integer>1</integer>
 				<key>escaping</key>
 				<integer>36</integer>
 				<key>keyword</key>
 				<string>cb:p</string>
+				<key>queuedelaycustom</key>
+				<integer>1</integer>
+				<key>queuedelayimmediatelyinitially</key>
+				<false/>
+				<key>queuedelaymode</key>
+				<integer>0</integer>
+				<key>queuemode</key>
+				<integer>1</integer>
 				<key>runningsubtext</key>
 				<string>Searching codebase...</string>
 				<key>script</key>
@@ -80,30 +82,42 @@
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>escaping</key>
-				<integer>127</integer>
-				<key>keyword</key>
-				<string>cb:t</string>
-				<key>runningsubtext</key>
-				<string>Search codebase project for tickets</string>
-				<key>script</key>
-				<string>/usr/local/bin/node index.js "{query}" "ticket"
-</string>
-				<key>subtext</key>
-				<string>Search codebase project {{query}} for tickets</string>
-				<key>title</key>
-				<string>Search codebase project {{query}} for tickets</string>
-				<key>type</key>
-				<integer>0</integer>
-				<key>withspace</key>
+				<key>lastpathcomponent</key>
+				<false/>
+				<key>onlyshowifquerypopulated</key>
 				<true/>
+				<key>output</key>
+				<integer>0</integer>
+				<key>removeextension</key>
+				<false/>
+				<key>sticky</key>
+				<false/>
+				<key>text</key>
+				<string>{query}</string>
+				<key>title</key>
+				<string>Alfred Codebase</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.scriptfilter</string>
+			<string>alfred.workflow.output.notification</string>
 			<key>uid</key>
-			<string>3ED8484E-10D4-4488-8D76-9A5CAF9680F0</string>
+			<string>07A944EE-AC98-4DF7-834F-378847E2161C</string>
+			<key>version</key>
+			<integer>0</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>escaping</key>
+				<integer>4</integer>
+				<key>script</key>
+				<string>/usr/local/bin/node command.js "{query}"</string>
+				<key>type</key>
+				<integer>0</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>0B9671DA-78B2-4C92-A172-52DA3F9BFC65</string>
 			<key>version</key>
 			<integer>0</integer>
 		</dict>
@@ -112,15 +126,15 @@
 	<string></string>
 	<key>uidata</key>
 	<dict>
-		<key>3ABEA8AA-7DAC-4A9F-BE52-7318E560EC8A</key>
+		<key>07A944EE-AC98-4DF7-834F-378847E2161C</key>
 		<dict>
 			<key>ypos</key>
 			<real>60</real>
 		</dict>
-		<key>3ED8484E-10D4-4488-8D76-9A5CAF9680F0</key>
+		<key>0B9671DA-78B2-4C92-A172-52DA3F9BFC65</key>
 		<dict>
 			<key>ypos</key>
-			<real>180</real>
+			<real>60</real>
 		</dict>
 		<key>63F60794-BB56-4415-9372-BAF974C3A7E1</key>
 		<dict>

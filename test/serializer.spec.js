@@ -55,8 +55,8 @@ describe('serializer', function () {
             expect(result.children[0].attributes.autocomplete).not.to.be.undefined();
 
             expect(result.children[0].attributes.uid.value).to.equal('1');
-            expect(result.children[0].attributes.arg.value).to.equal('1');
-            expect(result.children[0].attributes.autocomplete.value).to.equal('1');
+            expect(result.children[0].attributes.arg.value).to.equal('1 >');
+            expect(result.children[0].attributes.autocomplete.value).to.equal('1 >');
         });
     });
 });

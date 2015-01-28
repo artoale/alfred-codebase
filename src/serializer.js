@@ -5,21 +5,42 @@
 var builder = require('xmlbuilder');
 
 module.exports = function() {
+
+    var _addItem = function (root, autocomplete, arg, title, subtitle, uid) {
+        var itemAttr = {
+            autocomplete: autocomplete,
+            arg: arg
+        };
+        if (uid) {
+            itemAttr.uid = uid;
+        }
+        var itemRoot = root.ele('item', itemAttr);
+        itemRoot.ele('title', {}, title);
+        itemRoot.ele('subtitle', {}, subtitle);
+        itemRoot.end();
+    };
+
+    var commands = function () {
+        var root = builder.create('items');
+        return function command(title, subtitle) {
+            if (title) {
+                _addItem(root,'> ' + title, '> ' + title, title,  subtitle, 'cmd-' + title);
+                return command;
+            } 
+            return root;
+        };
+    };
+
     var projects = function(items) {
         var root = builder.create('items');
         if (!Array.isArray(items)) {
             items = [];
         }
         items.forEach(function(item) {
-            var itemRoot = root.ele('item', {
-                'uid': item.project.project_id,
-                'arg': item.project.permalink,
-                'autocomplete': item.project.name
-            });
-
-            itemRoot.ele('title', {}, item.project.name);
-            itemRoot.ele('subtitle', {}, item.project.group_id + ' (open tickets: ' + item.project.open_tickets + '/' + item.project.total_tickets + ')');
-            itemRoot.end();
+            var project = item.project;
+            var subtitle = project.group_id + ' (open tickets: ' + project.open_tickets + '/' + project.total_tickets + ')';
+            _addItem(root, project.permalink + ' >', project.permalink + ' >', project.name, subtitle, project.project_id);
+            
         });
 
         root.end();
@@ -45,7 +66,7 @@ module.exports = function() {
 
             var itemRoot = root.ele('item', {
                 'arg': 'projects/' + project + '/tickets/' + item.ticket.ticket_id,
-                'autocomplete': title
+                'autocomplete': project + ' > ' + item.ticket.ticket_id
             });
 
             itemRoot.ele('title', {}, title);
@@ -60,6 +81,7 @@ module.exports = function() {
 
     return {
         projects: projects,
-        tickets: tickets
+        tickets: tickets,
+        commands: commands
     };
 };
