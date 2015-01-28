@@ -47,6 +47,7 @@ module.exports = function(auth, config, fs) {
 
     };
 
+
     var tickets = function(project, query) {
         return client({
             path: project + '/tickets',
