@@ -11,10 +11,11 @@ module.exports = function workflowF(codebase, serializer, commandsDefp) {
     var showCommandList = function (query) {
         var commands = serializer.commands();
         commandsDefp.then(function () {
+            var tokens = query.split(/\s/);
             Object.keys(commandsDef).forEach(function (commandKey) {
                 var commandDef = commandsDef[commandKey];
-                if (commandKey.indexOf(query) > -1) {
-                    commands(commandKey, commandDef);
+                if (commandKey.indexOf(tokens[0]) > -1) {
+                    commands(commandKey, commandDef, tokens[1]);
                 }
             });
             var xml = commands().toString();

@@ -22,11 +22,12 @@ module.exports = function() {
 
     var commands = function () {
         var root = builder.create('items');
-        return function command(title, subtitle) {
+        return function command(title, subtitle, action) {
+            action = '> ' + title + (action ? ' ' + action : ''); //defaults to title only, otherwise, append to default
             if (title) {
-                _addItem(root,'> ' + title, '> ' + title, title,  subtitle, 'cmd-' + title);
+                _addItem(root,'> ' + title, action, title,  subtitle, 'cmd-' + title);
                 return command;
-            } 
+            }
             return root;
         };
     };
@@ -40,7 +41,7 @@ module.exports = function() {
             var project = item.project;
             var subtitle = project.group_id + ' (open tickets: ' + project.open_tickets + '/' + project.total_tickets + ')';
             _addItem(root, project.permalink + ' >', project.permalink, project.name, subtitle, project.project_id);
-            
+
         });
 
         root.end();
