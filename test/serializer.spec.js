@@ -1,4 +1,5 @@
 /*jshint mocha:true*/
+'use strict';
 var chai = require('chai');
 var serializerFactory = require('../src/serializer.js');
 var serializer;

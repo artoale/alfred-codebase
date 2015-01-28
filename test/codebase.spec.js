@@ -6,7 +6,7 @@ var expect = chai.expect;
 var nock = require('nock');
 var Q = require('q');
 var sinon = require('sinon');
-var sinonChai = require("sinon-chai");
+var sinonChai = require('sinon-chai');
 
 chai.use(sinonChai);
 

@@ -1,8 +1,9 @@
 module.exports = function(grunt) {
-
+    'use strict';
     // Add the grunt-mocha-test tasks.
     grunt.loadNpmTasks('grunt-mocha-test');
     grunt.loadNpmTasks('grunt-contrib-watch');
+    grunt.loadNpmTasks('grunt-contrib-jshint');
     grunt.loadNpmTasks('grunt-notify');
 
     grunt.initConfig({
@@ -10,8 +11,14 @@ module.exports = function(grunt) {
         watch: {
             test: {
                 files: ['**/*.js'],
-                tasks: ['mochaTest:test', 'notify:test'],
+                tasks: ['test', 'notify:test'],
             }
+        },
+        jshint: {
+            options: {
+                jshintrc: true
+            },
+            all: ['Gruntfile.js', 'src/**/*.js', 'test/**/*.js']
         },
         notify_hooks: {
             options: {
@@ -23,8 +30,8 @@ module.exports = function(grunt) {
         notify: {
             test: {
                 options: {
-                    title: 'Mocha',
-                    message: 'All test passed'
+                    title: 'Lint and tests',
+                    message: 'Fint lint-free and all test passed'
                 }
             }
         },
@@ -44,9 +51,10 @@ module.exports = function(grunt) {
             }
         }
     });
-
+    
     grunt.registerTask('default', 'watch');
-    grunt.registerTask('test-ci', 'mochaTest:ci');
+    grunt.registerTask('test', ['jshint', 'mochaTest:test']);
+    grunt.registerTask('test-ci', ['jshint', 'mochaTest:ci']);
     grunt.task.run('notify_hooks');
 
 };

@@ -27,7 +27,7 @@ module.exports = function(auth, config, fs) {
     });
 
     var projects = function(query) {
-        return fs.read(config.projectCache).catch(function(error) {
+        return fs.read(config.projectCache).catch(function() {
                 return client({
                     path: 'projects'
                 }).then(function(data) {
