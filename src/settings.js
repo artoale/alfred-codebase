@@ -31,9 +31,6 @@ module.exports = function (fs, fileName) {
                 var obj = data ? JSON.parse(data) : {};
                 obj[key] = value;
                 return fs.write(fileName, JSON.stringify(obj));
-            })
-            .then(function (data) {
-                console.log('write', data);
             });
     };
 
