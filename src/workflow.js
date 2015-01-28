@@ -1,19 +1,25 @@
 /*jshint node:true*/
 'use strict';
 
+module.exports = function workflowF(codebase, serializer, commandsDefp) {
+    var commandsDef;
 
-module.exports = function workflowF(codebase, serializer, commandsDef) {
+    commandsDefp = commandsDefp.then(function (_commandsDef_) {
+        commandsDef = _commandsDef_;
+    });
 
     var showCommandList = function (query) {
         var commands = serializer.commands();
-        Object.keys(commandsDef).forEach(function (commandKey) {
-            var commandDef = commandsDef[commandKey];
-            if (commandKey.indexOf(query) > -1) {
-                commands(commandKey, commandDef);
-            }
+        commandsDefp.then(function () {
+            Object.keys(commandsDef).forEach(function (commandKey) {
+                var commandDef = commandsDef[commandKey];
+                if (commandKey.indexOf(query) > -1) {
+                    commands(commandKey, commandDef);
+                }
+            });
+            var xml = commands().toString();
+            console.log(xml);
         });
-        var xml = commands().toString();
-        console.log(xml);
     };
 
     var showTicketList = function (project, query) {
@@ -21,7 +27,7 @@ module.exports = function workflowF(codebase, serializer, commandsDef) {
             console.log(serializer.tickets(data, project).toString());
         });
     };
-    
+
     var showProjectList = function (query) {
         return codebase.projects(query).then(function (data) {
             console.log(serializer.projects(data).toString());
@@ -34,3 +40,4 @@ module.exports = function workflowF(codebase, serializer, commandsDef) {
         showCommandList: showCommandList
     };
 };
+

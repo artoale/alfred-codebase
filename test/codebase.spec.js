@@ -19,8 +19,9 @@ var readDeferred;
 var writeDeferred;
 
 describe('codebase', function () {
-    
+
     beforeEach(function () {
+        var configDeferred = Q.defer();
         readDeferred = Q.defer();
         writeDeferred = Q.defer();
         fsMock = {
@@ -32,16 +33,19 @@ describe('codebase', function () {
         codebase = codebaseFactory({
             user: 'Gandalf',
             pass: 'mellon'
-        }, {
+        }, configDeferred.promise, fsMock);
+
+        configDeferred.resolve({
             projectCache: 'you-cannot-pass'
-        }, fsMock);
+        });
+
         codebaseServer = nock('https://api3.codebasehq.com', {
             reqheaders: {
                 'authorization': 'Basic R2FuZGFsZjptZWxsb24=', //User+pass sha
             }
         });
     });
-    
+
     describe('#projects', function () {
         it('should be defined', function () {
             expect(codebase.projects).to.be.a('function');
@@ -51,7 +55,7 @@ describe('codebase', function () {
             readDeferred.reject();
             codebaseServer.get('/projects?raw=true')
                 .reply(200, []);
-            
+
             var promise = codebase.projects();
 
             return promise;
@@ -61,9 +65,9 @@ describe('codebase', function () {
             readDeferred.reject();
             codebaseServer.get('/projects?raw=true')
                 .reply(200, []);
-            
+
             var promise = codebase.projects();
-            
+
             return promise.then(function () {
                 expect(fsMock.write).to.have.been.calledWith('you-cannot-pass', '[]');
             });
@@ -71,9 +75,9 @@ describe('codebase', function () {
 
         it('should return the parsed elements if file available', function () {
             readDeferred.resolve('[]');
-        
+
             var promise = codebase.projects();
-            
+
             return promise.then(function (data) {
                 expect(data).to.eql([]);
             });
@@ -81,11 +85,11 @@ describe('codebase', function () {
 
         it('should return the fetched elements if file not available', function () {
             readDeferred.reject();
-        
+
             var promise = codebase.projects();
             codebaseServer.get('/projects?raw=true')
                 .reply(200, []);
-            
+
             return promise.then(function (data) {
                 expect(data).to.eql([]);
             });

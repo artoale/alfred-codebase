@@ -27,12 +27,15 @@ module.exports = function(auth, config, fs) {
     });
 
     var projects = function(query) {
-        return fs.read(config.projectCache).catch(function() {
+        return config.get('projectCache').then(fs.read.bind(fs)).catch(function(err) {
+                console.error(err);
                 return client({
                     path: 'projects'
                 }).then(function(data) {
                     var toCache = JSON.stringify(data.entity);
-                    fs.write(config.projectCache, toCache);
+                    config.get('projectCache').then(function (projectCache) {
+                        fs.write(projectCache, toCache);
+                    });
                     return toCache;
                 });
             })
