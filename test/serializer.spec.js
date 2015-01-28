@@ -146,4 +146,28 @@ describe('serializer', function () {
             expect(args.autocomplete.value).to.equal('a-project > 1');
         });
     });
+
+    describe('#commands', function () {
+        it('should be defined', function () {
+            expect(serializer.commands).to.be.a('function');
+        });
+        
+        it('should return a function', function () {
+            expect(serializer.commands()).to.be.a('function');
+        });
+
+        it('should keep adding commands until called without args', function () {
+            var command = serializer.commands();
+            var interm = command('title', 'subtitle');
+
+            expect(interm).to.be.a('function');
+
+            interm = interm('title2', 'subtitle2');
+
+            expect(interm).to.be.a('function');
+
+            var final = interm();
+            expect(final).to.be.an('object');
+        });
+    });
 });
