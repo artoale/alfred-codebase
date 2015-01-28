@@ -12,23 +12,29 @@ module.exports = function (fs, fileName) {
     };
 
     var get = function (key) {
-        return fs.read(fileName).then(function (data) {
-            if (key) {
-                return JSON.parse(data)[key];
-            }
-            return JSON.parse(data);
-        }, _onError);
+        return fs.read(fileName)
+            .catch(_onError)
+            .then(function (data) {
+                data = data || '{}';
+                if (key) {
+                    return JSON.parse(data)[key];
+                }
+                return JSON.parse(data);
+            });
     };
 
     var set = function (key, value) {
-        return fs.read(fileName).catch(_onError).then(function (data) {
-            data = data;
-            var obj = data ? JSON.parse(data) : {};
-            obj[key] = value;
-            return fs.write(fileName, JSON.stringify(obj));
-        }).then(function (data) {
-            console.log('write', data);
-        });
+        return fs.read(fileName)
+            .catch(_onError)
+            .then(function (data) {
+                data = data;
+                var obj = data ? JSON.parse(data) : {};
+                obj[key] = value;
+                return fs.write(fileName, JSON.stringify(obj));
+            })
+            .then(function (data) {
+                console.log('write', data);
+            });
     };
 
     return {
