@@ -41,6 +41,16 @@ var commands = {
             .catch(function (error) {
                 console.dir(error.stack);
             });
+    },
+    'set-domain': function (arg) {
+        auth.set('domain', arg)
+            .then(function () {
+                console.log('Domain saved successfully');
+            })
+            .catch(function (err) {
+                console.log('There was an error while saving');
+                console.error('There was an error while saving:', err);
+            });
     }
 };
 
@@ -51,7 +61,7 @@ if (query[0] === '>') {
     if (typeof command === 'function') {
         command(tokens[1]);
     } else {
-        console.log('executing command...', query.slice(0));
+        console.log('executing command:', query.slice(0));
     }
 } else {
     console.log('opening ', process.argv[2]);
