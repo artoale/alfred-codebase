@@ -1,9 +1,9 @@
 {
  "commands": {
-  "login": "Login to your codebase account",
-  "settings": "Change your configuration",
+  "login": "Login to your codebase account: > login API-Username:API-Key",
+  "set-domain": "Specify your codebase base url - https://my-company.codebasehq.com ",
   "update": "Update project list"
  },
  "projectCache": "./project-list.json",
- "last-update": 1422495481816
+ "last-update": 1422496580934
 }

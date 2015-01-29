@@ -25,7 +25,7 @@ var commands = {
                 console.log('Error while setting credential', error);
             });
         } else {
-            console.log('Starting server...');
+            console.log('Please provide username:accessToken');
         }
     },
     update: function () {
