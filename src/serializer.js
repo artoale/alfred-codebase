@@ -66,7 +66,7 @@ module.exports = function() {
             }
 
             var itemRoot = root.ele('item', {
-                'arg': 'projects/' + project + '/tickets/' + item.ticket.ticket_id,
+                'arg': project + '/tickets/' + item.ticket.ticket_id,
                 'autocomplete': project + ' > ' + item.ticket.ticket_id
             });
 

@@ -61,9 +61,12 @@ if (query[0] === '>') {
     if (typeof command === 'function') {
         command(tokens[1]);
     } else {
-        console.log('executing command:', query.slice(0));
+        console.log('Unknown command', tokens[0]);
     }
 } else {
-    console.log('opening ', process.argv[2]);
+    auth.get('domain').then(function (domain) {
+        var command = 'open ' + domain + '/projects/' + query;
+        require('child_process').exec(command);
+    });
 }
 

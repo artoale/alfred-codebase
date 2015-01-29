@@ -7,11 +7,11 @@ var serializer;
 var expect = chai.expect;
 
 describe('serializer', function () {
-    
+
     beforeEach(function () {
         serializer = serializerFactory();
     });
-    
+
     describe('#projects', function () {
         it('should be defined', function () {
             expect(serializer.projects).to.be.a('function');
@@ -106,7 +106,7 @@ describe('serializer', function () {
 
             var result = serializer.tickets(items, 'a-project');
             var title = result.children[0].children[0].children[0].value;
-            
+
             expect(title).to.equal('#1: summary1');
         });
 
@@ -124,7 +124,7 @@ describe('serializer', function () {
 
             var result = serializer.tickets(items, 'a-project');
             var title = result.children[0].children[1].children[0].value;
-            
+
             expect(title).to.equal('Bug, status1');
         });
 
@@ -142,8 +142,8 @@ describe('serializer', function () {
 
             var result = serializer.tickets(items, 'a-project');
             var args = result.children[0].attributes;
-            
-            expect(args.arg.value).to.equal('projects/a-project/tickets/1');
+
+            expect(args.arg.value).to.equal('a-project/tickets/1');
             expect(args.autocomplete.value).to.equal('a-project > 1');
         });
     });
@@ -152,7 +152,7 @@ describe('serializer', function () {
         it('should be defined', function () {
             expect(serializer.commands).to.be.a('function');
         });
-        
+
         it('should return a function', function () {
             expect(serializer.commands()).to.be.a('function');
         });
