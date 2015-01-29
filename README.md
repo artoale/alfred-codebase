@@ -1,4 +1,4 @@
-# alfred-codebase
+#alfred-codebase [![Build Status](https://travis-ci.org/artoale/alfred-codebase.svg?branch=master)](https://travis-ci.org/artoale/alfred-codebase)
 Alfred workflow to navigate codebase tickets
 
 This workflow allows to quickly reach project and tickets in [codebase hq](https://www.codebasehq.com/) through Alfred 2.
