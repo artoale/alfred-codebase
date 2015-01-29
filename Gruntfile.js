@@ -31,7 +31,7 @@ module.exports = function(grunt) {
             test: {
                 options: {
                     title: 'Lint and tests',
-                    message: 'Fint lint-free and all test passed'
+                    message: 'Files lint-free and all test passed'
                 }
             }
         },
@@ -51,7 +51,7 @@ module.exports = function(grunt) {
             }
         }
     });
-    
+
     grunt.registerTask('default', 'watch');
     grunt.registerTask('test', ['jshint', 'mochaTest:test']);
     grunt.registerTask('test-ci', ['jshint', 'mochaTest:ci']);
