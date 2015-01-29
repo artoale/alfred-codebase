@@ -4,9 +4,9 @@ Alfred workflow to navigate codebase tickets
 This workflow allows to quickly reach project and tickets in [codebase hq](https://www.codebasehq.com/) through Alfred 2.
 It requires *node.js* installed and reacheable in `/usr/local/bin/node`. 
 
-##Setup
+##Setup 
 
-After installing the workflow, you should be avle to activate alfred-codebase via `cb {query}`
+After [downloading](https://github.com/artoale/alfred-codebase/releases/) and installing the workflow, you should be able to activate alfred-codebase via `cb {query}`
 In order to access the APIs, you need to set-up your API credential and your codebase domain name:
 
 * If you don't have it, install *node.js* (v0.10+) first.
