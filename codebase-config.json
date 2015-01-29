@@ -1,8 +1,9 @@
 {
-    "commands": {
-        "login": "Login to your codebase account",
-        "settings": "Change your configuration",
-        "update": "Update project list"
-    },
-    "projectCache": "./project-list.json"
+ "commands": {
+  "login": "Login to your codebase account",
+  "settings": "Change your configuration",
+  "update": "Update project list"
+ },
+ "projectCache": "./project-list.json",
+ "last-update": 1422495481816
 }

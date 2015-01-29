@@ -95,7 +95,7 @@ describe('settings', function () {
             return settings.set('king', 'mad').then(function () {
                 expect(fsMock.write).to.have.been.calledWith('fileName', JSON.stringify({
                     king: 'mad'
-                }));
+                }, undefined, ' '));
             });
         });
 
@@ -115,7 +115,7 @@ describe('settings', function () {
                 return promise.then(function () {
                     expect(fsMock.write).to.have.been.calledWith('fileName', JSON.stringify({
                         king: 'mad'
-                    }));
+                    }, undefined, ' '));
                 });
             });
         });

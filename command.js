@@ -7,7 +7,7 @@ var tokens, command;
 var fs = require('q-io/fs');
 var settingsF = require('./src/settings');
 var auth = settingsF(fs, process.cwd() + '/auth.json');
-
+var codebaseF = require('./src/codebase');
 var commands = {
     login: function (arg) {
         var user;
@@ -27,6 +27,20 @@ var commands = {
         } else {
             console.log('Starting server...');
         }
+    },
+    update: function () {
+        auth.get()
+            .then(function (authInfo) {
+                var config = settingsF(fs, process.cwd() + '/codebase-config.json');
+                var codebase = codebaseF(authInfo, config, fs);
+                return codebase.updateProjectList();
+            })
+            .then(function () {
+                console.log('Project list successfully updated');
+            })
+            .catch(function (error) {
+                console.dir(error.stack);
+            });
     }
 };
 

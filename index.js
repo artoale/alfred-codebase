@@ -6,7 +6,7 @@ var fs = require('q-io/fs');
 
 var settingsF = require('./src/settings');
 var config = settingsF(fs, process.cwd() + '/codebase-config.json');
-var codebase = require('./src/codebase.js')(auth, config.get(), fs);
+var codebase = require('./src/codebase.js')(auth, config, fs);
 var serializer = require('./src/serializer.js')();
 var workflow = require('./src/workflow')(codebase,serializer, config.get().get('commands'));
 

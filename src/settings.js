@@ -30,7 +30,7 @@ module.exports = function (fs, fileName) {
                 data = data;
                 var obj = data ? JSON.parse(data) : {};
                 obj[key] = value;
-                return fs.write(fileName, JSON.stringify(obj));
+                return fs.write(fileName, JSON.stringify(obj, undefined, ' '));
             });
     };
 
