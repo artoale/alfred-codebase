@@ -32,7 +32,7 @@ module.exports = function (auth, config, fs) {
         var now = _now();
         return config.get('last-update')
             .then(function (lastUpdate) {
-                if ((now - lastUpdate) < 1000 * 60 * 60) {
+                if ((now - lastUpdate) > (1000 * 60 * 60 * 24)) { //update list once a day
                     throw {};
                 }
                 return val;
