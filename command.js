@@ -68,8 +68,12 @@ if (query[0] === '>') {
     }
 } else {
     auth.get('domain').then(function (domain) {
-        var command = 'open ' + domain + '/projects/' + query;
-        require('child_process').exec(command);
+        if (domain) {
+            var command = 'open ' + domain + '/projects/' + query;
+            require('child_process').exec(command);
+        } else {
+            console.log('Please set your actual domain e.g. http://my-company.codebasehq.com');
+        }
     });
 }
 
