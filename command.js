@@ -72,7 +72,13 @@ if (query[0] === '>') {
             var command = 'open ' + domain + '/projects/' + query;
             require('child_process').exec(command);
         } else {
-            console.log('Please set your actual domain e.g. http://my-company.codebasehq.com');
+            auth.set('domain', 'http://example.codebasehq.com')
+            .then(function () {
+                var command = 'open ' + process.cwd() + '/auth.json';
+                require('child_process').exec(command);
+                console.log('Please set your actual domain e.g. http://my-company.codebasehq.com');
+            });
+
         }
     });
 }
