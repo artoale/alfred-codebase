@@ -24,17 +24,23 @@ describe('codebase', function () {
         var configDeferred = Q.defer();
         readDeferred = Q.defer();
         writeDeferred = Q.defer();
+        var authDeferred = Q.defer();
         fsMock = {
             read: function () {
                 return readDeferred.promise;
             },
             write: sinon.spy()
         };
-        codebase = codebaseFactory({
+        var authMock = {
+            get: function () {
+                return authDeferred.promise;
+            }
+        };
+        codebase = codebaseFactory(authMock, configDeferred.promise, fsMock);
+        authDeferred.resolve({
             user: 'Gandalf',
             pass: 'mellon'
-        }, configDeferred.promise, fsMock);
-
+        });
         configDeferred.resolve({
             projectCache: 'you-cannot-pass'
         });

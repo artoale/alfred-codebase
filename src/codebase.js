@@ -6,23 +6,26 @@ var mime = require('rest/interceptor/mime');
 var pathPrefix = require('rest/interceptor/pathPrefix');
 var defaultRequest = require('rest/interceptor/defaultRequest');
 
-module.exports = function (auth, config, fs) {
+module.exports = function (authp, config, fs) {
 
-    var client = rest.wrap(basicAuth, {
-            username: auth.user,
-            password: auth.pass
-        })
-        .wrap(mime, {
-            accept: 'application/json'
-        })
-        .wrap(pathPrefix, {
-            prefix: 'https://api3.codebasehq.com/'
-        })
-        .wrap(defaultRequest, {
-            params: {
-                raw: true
-            }
-        });
+    var clientp = authp.get().then(function (auth) {
+
+        return rest.wrap(basicAuth, {
+                username: auth.user,
+                password: auth.pass
+            })
+            .wrap(mime, {
+                accept: 'application/json'
+            })
+            .wrap(pathPrefix, {
+                prefix: 'https://api3.codebasehq.com/'
+            })
+            .wrap(defaultRequest, {
+                params: {
+                    raw: true
+                }
+            });
+    });
 
     var _now = function () {
         return +(new Date());
@@ -53,26 +56,30 @@ module.exports = function (auth, config, fs) {
     };
 
     var updateProjectList = function () {
-        return client({
-            path: 'projects'
-        }).then(function (data) {
-            var toCache = JSON.stringify(data.entity);
-            config.get('projectCache').then(function (projectCache) {
-                fs.write(projectCache, toCache);
-                config.set('last-update', _now());
+        return clientp.then(function (client) {
+            return client({
+                path: 'projects'
+            }).then(function (data) {
+                var toCache = JSON.stringify(data.entity);
+                config.get('projectCache').then(function (projectCache) {
+                    fs.write(projectCache, toCache);
+                    config.set('last-update', _now());
+                });
+                return toCache;
             });
-            return toCache;
         });
     };
 
     var tickets = function (project, query) {
-        return client({
-            path: project + '/tickets',
-            params: {
-                query: 'resolution:open ' + query
-            }
-        }).then(function (data) {
-            return data.entity;
+        return clientp.then(function (client) {
+            return client({
+                path: project + '/tickets',
+                params: {
+                    query: 'resolution:open ' + query
+                }
+            }).then(function (data) {
+                return data.entity;
+            });
         });
     };
 
