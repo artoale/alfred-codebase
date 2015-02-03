@@ -10,7 +10,7 @@ module.exports = function(grunt) {
         // Configure a mochaTest task
         watch: {
             test: {
-                files: ['**/*.js'],
+                files: ['src/*.js', 'test/*.js', 'index.js', 'command.js', 'Gruntfile.js'],
                 tasks: ['test', 'notify:test'],
             }
         },
