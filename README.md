@@ -11,8 +11,10 @@ In order to access the APIs, you need to set-up your API credential and your cod
 
 * If you don't have it, install *node.js* (v0.10+) first.
 * Go to https://your-company.codebasehq.com/settings/profile, you'll find the credential at the bottom.
-* Open up Alfred and type `cb > login <api-username>:<api-key>` (e.g `cb > login company/user:12345asdfg9876`). You should see a confirmation notification message
-* To set up your domain name type `cb > set-domain https://<your-domain`
+* Open up Alfred and type `cb > login`. It will open up a json file in your default text editor - edit it with your API credentials (e.g. `{ "user": "mycompany/my-self", "pass": "12345asdfg9876"}`)
+* not-always-working-alternative: open up Alfred and type `cb > login <api-username>:<api-key>` (e.g `cb > login company/user:12345asdfg9876`). You should see a confirmation notification message
+* To set up your domain name type `cb > set-domain https://<your-domain>` (e.g. `cb > set-domain http://my-company.codebasehq.com`)
+* Note: alfred debounces the keypress when typing so please, wait some time before hitting enter when you have set your domain 
 * Done! If you now open alfred and type cb you should see the full list of projects.
 
 **Note: the list of project is cached locally and updated once a day**
