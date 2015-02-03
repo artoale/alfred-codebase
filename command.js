@@ -25,7 +25,10 @@ var commands = {
                 console.log('Error while setting credential', error);
             });
         } else {
-            console.log('Please provide username:accessToken');
+            var command = 'open ' + process.cwd() + '/auth.json';
+            console.error('doing:', command);
+            require('child_process').exec(command);
+            console.log('Opening auth file');
         }
     },
     update: function () {
